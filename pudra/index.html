@@ -196,17 +196,17 @@ sc.landing=`<div class="body">
 <p class="sm mut" style="text-align:center"><u>Оферта</u> · <u>Политика данных</u> · <u>Контакты</u></p>
 </div>`;
 
-sc.login=`<img src="${IMG('vhod-fon')}" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"><div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(246,243,248,0) 25%,var(--p-bg) 90%)"></div>${SB}
-<div class="body" style="justify-content:flex-end">
-<button class="back" data-go="landing" aria-label="Назад" style="position:absolute;top:12px;left:20px">${ic('back')}</button>
+sc.login=`${SB}
+<div class="body">
+<div class="hd"><button class="back" data-go="landing" aria-label="Назад">${ic('back')}</button><span class="logo"><i></i>Ролико</span><span style="width:40px"></span></div>
+<div style="flex:1"></div><div class="row" style="justify-content:center"><img src="${IMG('ikonka-podarok')}" alt="" style="width:120px;filter:drop-shadow(0 14px 24px rgba(139,111,209,.3))"></div>
 <div class="card" style="display:flex;flex-direction:column;gap:12px;padding:22px">
-<span class="logo"><i></i>Ролико</span>
 <h2 class="disp h2">Войдите, чтобы забрать ролик в подарок</h2>
 <button class="btn" data-go="home" style="background:#FC3F1D;box-shadow:none"><b style="font-size:18px">Я</b> Войти с Яндекс ID</button>
 <button class="btn" data-go="home" style="background:#0077FF;box-shadow:none"><b>VK</b> Войти через VK ID</button>
 <button class="btn ghost" data-sheet="phone">${ic('phone')}По номеру телефона</button>
 <p class="sm mut">Продолжая, вы принимаете <u>оферту</u> и <u>политику обработки персональных данных</u>.</p>
-</div><p class="sm mut" style="text-align:center">В Telegram вход не нужен: открываем сразу.</p></div>`;
+</div><p class="sm mut" style="text-align:center">В Telegram вход не нужен: открываем сразу.</p><div style="flex:1.4"></div></div>`;
 
 const ideas=[['semka-1-golova','3 ошибки ваших клиентов'],['semka-6-process','Процесс работы за 30 секунд'],['semka-4-otzyv','Отзыв довольного клиента'],['semka-5-tovar','Обзор нового товара'],['semka-2-reportazh','Экскурсия по мастерской']];
 sc.home=`${SB}<div class="body">
