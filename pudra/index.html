@@ -1,0 +1,415 @@
+<title>Ролико · Пудра</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;700&family=Playfair+Display:ital,wght@1,600&family=Montserrat:wght@900&family=Caveat:wght@700&display=swap">
+<style>
+/* Кликабельный прототип варианта 1 «Пудровое стекло». На компьютере — телефон по центру, на телефоне — на весь экран. */
+:root{--bg:#EEEAF2;--fg:#1E1A28;--muted:#6B6478;
+  --p-bg:#F6F3F8;--p-surf:#FFFFFF;--p-ink:#1E1A28;--p-mut:#6B6478;--p-line:#E7E1EE;--p-acc:#8B6FD1;--p-acc-ink:#FFFFFF;--p-acc2:#E8A3BC;--p-soft:#EFE8FA;
+  --p-glass:rgba(255,255,255,.64);--p-glass-line:rgba(255,255,255,.85);--p-btn:linear-gradient(120deg,#8B6FD1,#B07BC9 55%,#E8A3BC);
+  --p-b1:#D9C9F5;--p-b2:#F6C9D8;--p-b3:#F7F1FB;--p-shadow:0 10px 30px rgba(80,50,140,.12);--p-tab:rgba(255,255,255,.82);--p-dark:#1E1A28;
+  --disp:'Unbounded','Manrope',sans-serif;--ui:'Manrope',system-ui,-apple-system,sans-serif}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0E0C12;--fg:#EEE9F5;--muted:#A79FB5;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0E0C12;--fg:#EEE9F5;--muted:#A79FB5;color-scheme:dark}
+/* ночная тема самого приложения (переключатель солнце/луна) */
+.app[data-mode="night"]{--p-bg:#15121B;--p-surf:#221D2B;--p-ink:#F1ECF7;--p-mut:#ABA2BB;--p-line:#352E40;--p-soft:#2A2335;
+  --p-glass:rgba(40,33,52,.66);--p-glass-line:rgba(255,255,255,.08);--p-acc:#B49CF0;--p-acc-ink:#15121B;--p-btn:linear-gradient(120deg,#9C82E6,#C38BD6 55%,#EBA9C2);
+  --p-b1:#3B2C63;--p-b2:#5A2D47;--p-b3:#15121B;--p-shadow:0 10px 30px rgba(0,0,0,.45);--p-tab:rgba(26,22,33,.86);--p-dark:#F1ECF7}
+html,body{height:100%}
+body{background:var(--bg);color:var(--fg);font:15px/1.5 var(--ui);display:flex;flex-direction:column;align-items:center;gap:14px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px}
+.cap{text-align:center;max-width:60ch;display:flex;flex-direction:column;gap:4px}
+.cap b{font:700 1.05rem var(--ui)} .cap span{color:var(--muted);font-size:.9rem}
+.ph{width:390px;max-width:100%;height:844px;max-height:calc(100dvh - 120px);min-height:640px;border-radius:46px;background:#0B0B0D;padding:10px;box-shadow:0 24px 60px rgba(40,20,80,.25);flex:none}
+@media (max-width:520px){body{padding:0;gap:0}.cap{display:none}.ph{width:100%;height:100%;max-height:none;min-height:0;border-radius:0;padding:0;box-shadow:none}.app{border-radius:0!important}}
+.app{position:relative;height:100%;border-radius:37px;overflow:hidden;background:var(--p-bg);color:var(--p-ink);font:15px/1.45 var(--ui);transition:background .3s}
+.app::before{content:"";position:absolute;inset:-12% -25% auto;height:62%;background:radial-gradient(40% 50% at 15% 25%,var(--p-b1),transparent 70%),radial-gradient(45% 45% at 90% 10%,var(--p-b2),transparent 70%),radial-gradient(40% 40% at 60% 60%,var(--p-b3),transparent 70%);pointer-events:none;animation:drift 14s ease-in-out infinite alternate}
+@keyframes drift{to{transform:translate(4%,3%) scale(1.05)}}
+/* экраны */
+.scr{position:absolute;inset:0;display:none;flex-direction:column}
+.scr.on{display:flex;animation:in .28s ease}
+@keyframes in{from{opacity:0;transform:translateY(8px)}}
+.sb{position:relative;display:flex;justify-content:space-between;padding:14px 28px 4px;font:700 14px var(--ui);flex:none}
+@media (max-width:520px){.sb{display:none}}
+.body{position:relative;flex:1;overflow-y:auto;padding:8px 20px 24px;display:flex;flex-direction:column;gap:16px;scrollbar-width:none;padding-top:max(8px,env(safe-area-inset-top,0px))}
+.body::-webkit-scrollbar{display:none}
+.hd{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.logo{font:700 19px var(--disp);display:flex;align-items:center;gap:8px}
+.logo i{width:26px;height:26px;border-radius:9px;background:var(--p-btn);display:inline-block}
+.disp{font-family:var(--disp);font-weight:700;letter-spacing:-.01em;line-height:1.1;margin:0;text-wrap:balance}
+.h1{font-size:29px}.h2{font-size:22px}.h3{font-size:17px}
+.mut{color:var(--p-mut)} .sm{font-size:13px} p{margin:0}
+.card{background:var(--p-glass);border:1px solid var(--p-glass-line);border-radius:22px;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:var(--p-shadow)}
+.pad{padding:16px}
+button{font:inherit;color:inherit;cursor:pointer}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;min-height:54px;border-radius:18px;background:var(--p-btn);color:#fff;font:700 16px var(--ui);border:0;width:100%;box-shadow:0 8px 22px rgba(139,111,209,.35);transition:transform .15s}
+.btn:active{transform:scale(.98)}
+.btn.ghost{background:var(--p-surf);color:var(--p-ink);border:1px solid var(--p-line);box-shadow:none}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:8px 13px;border-radius:99px;background:var(--p-soft);font:600 13px var(--ui);color:var(--p-ink);border:0}
+.chip.on{background:var(--p-acc);color:var(--p-acc-ink)}
+.row{display:flex;gap:10px;align-items:center}.wrap{flex-wrap:wrap}
+.ico{width:22px;height:22px;flex:none;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.img{display:block;width:100%;object-fit:cover;border-radius:14px}
+:focus-visible{outline:2px solid var(--p-acc);outline-offset:2px}
+/* мастер */
+.wzh{display:flex;align-items:center;gap:12px}
+.back{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:var(--p-glass);border:1px solid var(--p-glass-line);flex:none}
+.prog{display:flex;gap:5px;flex:1}.prog i{flex:1;height:4px;border-radius:4px;background:var(--p-line)}.prog i.on{background:var(--p-btn)}
+.withtab .stick{padding-bottom:40px}
+.stick{position:sticky;bottom:-24px;padding:12px 0 4px;margin-top:auto;background:linear-gradient(transparent,var(--p-bg) 35%)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pick{position:relative;border-radius:20px;overflow:hidden;border:2px solid transparent;padding:0;background:none;text-align:left}
+.pick.on{border-color:var(--p-acc);box-shadow:0 0 0 3px rgba(139,111,209,.2)}
+.pick img{aspect-ratio:3/4;width:100%;object-fit:cover;display:block}
+.pick .lab{position:absolute;inset:auto 0 0;padding:28px 10px 9px;background:linear-gradient(transparent,rgba(0,0,0,.62));color:#fff;font:700 13px/1.2 var(--ui)}
+.pick .ok{position:absolute;top:8px;right:8px;width:26px;height:26px;border-radius:50%;background:var(--p-acc);color:#fff;display:none;place-items:center}
+.pick.on .ok{display:grid}
+.opt{display:flex;gap:12px;align-items:flex-start;padding:14px;border-radius:16px;background:var(--p-glass);border:1px solid var(--p-glass-line);backdrop-filter:blur(18px);text-align:left;width:100%}
+.opt.on{border:2px solid var(--p-acc);padding:13px}
+.opt b{display:block;font-size:15px}.opt .sm{display:block}
+.rd{width:20px;height:20px;border-radius:50%;border:2px solid var(--p-line);flex:none;margin-top:2px}
+.opt.on .rd{border:6px solid var(--p-acc)}
+.fmt{width:22px;border:2px solid currentColor;border-radius:4px;flex:none}
+.list{display:flex;flex-direction:column}
+.li{display:flex;align-items:center;gap:12px;padding:13px 16px;border-top:1px solid var(--p-line);background:none;border-left:0;border-right:0;border-bottom:0;width:100%;text-align:left}
+.li:first-child{border-top:0}
+.li .r{margin-left:auto;color:var(--p-mut);font-size:13px;display:flex;gap:4px;align-items:center;text-align:right}
+.ov{position:absolute;color:#fff}
+.tit{font:900 26px/1.05 'Montserrat',sans-serif;text-align:center;text-shadow:0 2px 10px rgba(0,0,0,.35)}.tit em{font-style:normal;color:#FF5FA8}
+.badge{position:absolute;top:10px;left:10px;padding:4px 9px;border-radius:99px;background:rgba(0,0,0,.55);color:#fff;font:700 11px var(--ui)}
+.ba{position:relative;border-radius:22px;overflow:hidden;aspect-ratio:4/5;box-shadow:var(--p-shadow)}
+.ba img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ba .before{filter:saturate(.5) brightness(1.08) contrast(.85)}
+.ba .after{clip-path:inset(0 0 0 var(--cut,50%))}
+.ba .line{position:absolute;top:0;bottom:0;left:var(--cut,50%);width:2px;background:#fff}
+.ba .knob{position:absolute;top:50%;left:var(--cut,50%);transform:translate(-50%,-50%);width:40px;height:40px;border-radius:50%;background:#fff;display:grid;place-items:center;color:#333;box-shadow:0 4px 14px rgba(0,0,0,.25);font-weight:800}
+.ba input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;margin:0}
+.ba .tg{position:absolute;bottom:12px;padding:5px 10px;border-radius:99px;background:rgba(0,0,0,.5);color:#fff;font:700 12px var(--ui)}
+.orb{width:190px;height:190px;border-radius:50%;margin:0 auto;background:conic-gradient(from 0deg,#D9C9F5,#F6C9D8,#FFFFFF,#8B6FD1,#D9C9F5);filter:blur(14px);animation:spin 6s linear infinite,breathe 3s ease-in-out infinite}
+@keyframes spin{to{transform:rotate(360deg)}}@keyframes breathe{50%{scale:1.1}}
+.cells{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.cell{aspect-ratio:9/14;border-radius:14px;overflow:hidden;position:relative;background:var(--p-soft);display:grid;place-items:center;color:var(--p-mut);border:1.5px dashed var(--p-line);padding:0}
+.cell img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.cell.add{background:var(--p-glass);border:1.5px dashed var(--p-acc);color:var(--p-acc)}
+.cell .x{position:absolute;top:6px;right:6px;width:22px;height:22px;border-radius:50%;background:rgba(0,0,0,.55);color:#fff;display:grid;place-items:center;font-size:13px}
+.zone{position:relative;width:86px;aspect-ratio:9/16;border-radius:12px;border:2px solid var(--p-ink);overflow:hidden;flex:none;background:var(--p-surf);transition:aspect-ratio .3s}
+.zone i{position:absolute;left:0;right:0;background:repeating-linear-gradient(45deg,var(--p-acc2) 0 4px,transparent 4px 8px)}
+.sw{width:46px;height:28px;border-radius:99px;background:var(--p-line);position:relative;flex:none;margin-left:auto;border:0;padding:0;transition:background .2s}
+.sw::after{content:"";position:absolute;left:3px;top:3px;width:22px;height:22px;border-radius:50%;background:#fff;transition:left .2s;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+.sw[aria-checked="true"]{background:var(--p-acc)}.sw[aria-checked="true"]::after{left:21px}
+.vid{position:relative;border-radius:22px;overflow:hidden;aspect-ratio:9/14;box-shadow:var(--p-shadow)}
+.vid img{width:100%;height:100%;object-fit:cover;display:block}
+.play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:62px;height:62px;border-radius:50%;background:rgba(255,255,255,.35);backdrop-filter:blur(10px);display:grid;place-items:center}
+.wm{position:absolute;right:12px;bottom:12px;color:rgba(255,255,255,.75);font:700 13px var(--ui);letter-spacing:.04em}
+.menu{position:absolute;right:0;bottom:62px;width:240px;padding:6px;border-radius:18px;background:var(--p-surf);border:1px solid var(--p-line);box-shadow:0 14px 40px rgba(0,0,0,.18);z-index:3}
+.menu button{display:flex;gap:10px;align-items:center;padding:12px;border-radius:12px;font-weight:600;width:100%;background:none;border:0;text-align:left}
+.menu button:hover{background:var(--p-soft)}
+.pack{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-radius:16px;background:var(--p-surf);border:1px solid var(--p-line);width:100%;text-align:left}
+.pack.on{border:2px solid var(--p-acc);padding:13px 15px}
+.pack b{font-size:16px}.pack .pr{text-align:right}.pack .pr b{font-variant-numeric:tabular-nums}
+.hit{font:700 11px var(--ui);padding:3px 8px;border-radius:99px;background:var(--p-acc2);color:#2A1B22;margin-left:6px}
+.av{width:56px;height:56px;border-radius:50%;background:var(--p-btn);color:#fff;display:grid;place-items:center;font:700 20px var(--ui);flex:none}
+.ref{background:var(--p-dark);color:var(--p-bg);border-radius:22px;padding:14px 16px;display:flex;gap:12px;align-items:center;border:0;width:100%;text-align:left}
+.ref img{width:50px;height:50px}
+.ttl{font:700 12px var(--ui);letter-spacing:.08em;text-transform:uppercase;color:var(--p-mut);padding:0 4px}
+.fnt{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-radius:14px;background:var(--p-surf);border:1px solid var(--p-line);width:100%}
+.fnt.on{border:2px solid var(--p-acc);padding:11px 13px}
+.fnt span:first-child{font-size:20px}
+.inp{padding:13px 14px;border-radius:14px;background:var(--p-surf);border:1px solid var(--p-line);color:var(--p-ink);font:15px var(--ui);width:100%}
+.inp::placeholder{color:var(--p-mut)}
+.step{display:flex;gap:10px;align-items:center;font-weight:600;transition:color .3s}
+.step i{width:24px;height:24px;border-radius:50%;display:grid;place-items:center;background:var(--p-soft);color:var(--p-mut);font-style:normal;font-size:12px;flex:none}
+.step.done i{background:var(--p-acc);color:#fff}.step.now i{background:var(--p-acc2);color:#2A1B22}.step.wait{color:var(--p-mut)}
+.gift{display:flex;gap:12px;align-items:center;padding:10px 14px 10px 10px}
+.gift img{width:54px;height:54px}
+.mini{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.mv{position:relative;border-radius:16px;overflow:hidden;aspect-ratio:9/14;padding:0;border:0}
+.mv img{width:100%;height:100%;object-fit:cover}
+.mv .st{position:absolute;left:8px;bottom:8px;padding:4px 9px;border-radius:99px;font:700 11px var(--ui);background:rgba(255,255,255,.88);color:#1a1a1a}
+.mv .st.go{background:var(--p-acc);color:#fff}
+.num{font:700 34px/1 var(--disp);font-variant-numeric:tabular-nums}
+.hsc{display:flex;gap:10px;overflow-x:auto;margin:0 -20px;padding:2px 20px 6px;scrollbar-width:none;scroll-snap-type:x mandatory}.hsc::-webkit-scrollbar{display:none}
+.idea{flex:none;width:150px;scroll-snap-align:start;position:relative;border-radius:18px;overflow:hidden;aspect-ratio:3/4;border:0;padding:0}
+.idea img{width:100%;height:100%;object-fit:cover}
+.idea span{position:absolute;inset:auto 0 0;padding:26px 10px 10px;background:linear-gradient(transparent,rgba(0,0,0,.65));color:#fff;font:700 13px/1.2 var(--ui);text-align:left}
+/* нижнее меню: 5 пунктов, «Создать» по центру и приподнята */
+.tabbar{position:relative;flex:none;display:grid;grid-template-columns:repeat(5,1fr);align-items:end;padding:10px 6px max(18px,env(safe-area-inset-bottom,0px));background:var(--p-tab);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-top:1px solid var(--p-line);
+  -webkit-mask:radial-gradient(circle 38px at 50% -6px,transparent 37px,#000 38px);mask:radial-gradient(circle 38px at 50% -6px,transparent 37px,#000 38px)}
+.tabs{position:relative;flex:none}
+.tb{display:flex;flex-direction:column;align-items:center;gap:3px;font:600 11px var(--ui);color:var(--p-mut);background:none;border:0;padding:4px 0}
+.tb.on{color:var(--p-ink)}.tb.on .ico{stroke:var(--p-acc)}
+.fab{position:absolute;left:50%;top:-30px;transform:translateX(-50%);width:62px;height:62px;border-radius:50%;border:0;background:var(--p-btn);color:#fff;display:grid;place-items:center;
+  box-shadow:0 10px 24px rgba(139,111,209,.45),inset 0 1px 0 rgba(255,255,255,.45);z-index:2;transition:transform .2s}
+.fab::before{content:"";position:absolute;inset:-5px;border-radius:50%;background:conic-gradient(from 200deg,#D9C9F5,#F6C9D8,#8B6FD1,#D9C9F5);z-index:-1;opacity:.55;filter:blur(6px);animation:spin 8s linear infinite}
+.fab:active{transform:translateX(-50%) scale(.94)}
+.fab .ico{width:28px;height:28px;stroke-width:2.4}
+.fablab{grid-column:3;text-align:center;font:700 11px var(--ui);color:var(--p-ink);padding-bottom:4px}
+/* листы */
+.sheet{position:absolute;inset:0;background:rgba(20,10,30,.35);display:none;align-items:flex-end;z-index:20}
+.sheet.on{display:flex;animation:fade .2s}
+@keyframes fade{from{opacity:0}}
+.sheet .in{width:100%;background:var(--p-bg);border-radius:26px 26px 0 0;padding:10px 20px max(24px,env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:12px;animation:up .25s ease;max-height:85%;overflow-y:auto}
+@keyframes up{from{transform:translateY(40px)}}
+.grab{width:40px;height:5px;border-radius:5px;background:var(--p-line);margin:0 auto 6px}
+.full{position:absolute;inset:0;background:#000;z-index:30;display:none}
+.full.on{display:block}.full img{width:100%;height:100%;object-fit:contain}
+.full .x{position:absolute;top:max(18px,env(safe-area-inset-top,0px));right:18px;width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.2);color:#fff;border:0;font-size:20px}
+.toast{position:absolute;left:50%;bottom:110px;transform:translateX(-50%);background:var(--p-dark);color:var(--p-bg);padding:10px 16px;border-radius:14px;font-weight:700;font-size:13px;z-index:40;display:none;white-space:nowrap}
+.toast.on{display:block;animation:fade .2s}
+@media (prefers-reduced-motion:reduce){*,*::before{animation:none!important;transition:none!important}}
+</style>
+
+<div class="cap"><b>Вариант 1 · Пудровое стекло · кликабельный прототип</b><span>Нажимайте как в приложении. Вход любой кнопкой. Внизу 5 пунктов, «Создать» по центру. Солнце и луна в профиле и на главной меняют тему.</span></div>
+<div class="ph"><div class="app" id="app" data-mode="day"></div></div>
+
+<script>
+const IMG=n=>`img/${n}.webp`;
+const P={plus:'<path d="M12 5v14M5 12h14"/>',home:'<path d="M4 11l8-6.5 8 6.5V20h-5v-5h-6v5H4z"/>',film:'<rect x="3" y="5" width="18" height="14" rx="3"/><path d="M10 9.5v5l4-2.5z"/>',
+ wallet:'<rect x="3" y="6" width="18" height="13" rx="3"/><path d="M16 12.5h2M3 9h18"/>',user:'<circle cx="12" cy="8.5" r="3.5"/><path d="M5 20c1.2-3.5 4-5 7-5s5.8 1.5 7 5"/>',
+ back:'<path d="M15 5l-7 7 7 7"/>',chev:'<path d="M9 5l7 7-7 7"/>',check:'<path d="M5 12.5l4.5 4.5L19 7.5"/>',down:'<path d="M12 4v11M7 10.5l5 5 5-5M5 20h14"/>',
+ share:'<path d="M12 15V4M7.5 8.5 12 4l4.5 4.5M5 13v5a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-5"/>',sun:'<circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"/>',
+ moon:'<path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/>',tg:'<path d="M21 4 3 11l6 2 2 6 3-4 5 4z"/>',phone:'<rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18.5h2"/>',
+ bell:'<path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15zM10 20.5h4"/>',card:'<rect x="3" y="5.5" width="18" height="13" rx="2.5"/><path d="M3 10h18"/>',brush:'<path d="M14 4l6 6-8 8H6v-6z"/>',
+ help:'<circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.7.3-1 .9-1 1.7M12 17h.01"/>',doc:'<path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5"/>',
+ star:'<path d="M12 3l2.6 5.6 6 .7-4.5 4.1 1.2 6L12 16.4 6.7 19.4l1.2-6L3.4 9.3l6-.7z"/>',key:'<circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M16 7l3 3"/>',
+ play:'<path d="M8 5.5v13l11-6.5z" fill="#fff" stroke="none"/>',edit:'<path d="M4 20h4L19 9l-4-4L4 16z"/>',spark:'<path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/>',
+ clock:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',bulb:'<path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"/>'};
+const ic=(n,s='')=>`<svg class="ico" viewBox="0 0 24 24" aria-hidden="true" ${s}>${P[n]}</svg>`;
+const SB='<div class="sb"><span>9:41</span><span>●●● ▮</span></div>';
+const TABS=[['home','Главная','home'],['film','Мои ролики','reels'],null,['wallet','Баланс','balance'],['user','Профиль','profile']];
+const tabbar=a=>`<div class="tabs"><button class="fab" data-go="create" aria-label="Создать ролик">${ic('plus')}</button><nav class="tabbar">${TABS.map(t=>t?`<button class="tb ${t[2]===a?'on':''}" data-go="${t[2]}">${ic(t[0])}${t[1]}</button>`:`<span class="fablab">Создать</span>`).join('')}</nav></div>`;
+const wz=(n,title,lead,back)=>`<div class="wzh"><button class="back" data-go="${back}" aria-label="Назад">${ic('back')}</button><div class="prog">${[1,2,3,4,5,6].map(i=>`<i class="${i<=n?'on':''}"></i>`).join('')}</div><span class="sm mut">${n}/6</span></div><h2 class="disp h2">${title}</h2>${lead?`<p class="mut">${lead}</p>`:''}`;
+const nxt=(go,t='Дальше')=>`<div class="stick"><button class="btn" data-go="${go}">${t}</button></div>`;
+const tick=`<span class="ok">${ic('check','style="width:16px;height:16px"')}</span>`;
+const sc={};
+
+sc.landing=`<div class="body">
+<div class="hd"><span class="logo"><i></i>Ролико</span><button class="chip" data-go="login">Войти</button></div>
+<h1 class="disp h1">Снимите на телефон. Остальное смонтируем за вас</h1>
+<p class="mut">Титры слово в слово, цепляющее начало, чистый звук и цвет. Готово за 5 минут.</p>
+<div class="ba" id="ba" style="--cut:50%"><img class="before" src="${IMG('glavnaya-do')}" alt="Видео как сняли"><img class="after" src="${IMG('glavnaya-posle-titry')}" alt="После монтажа"><span class="line"></span><span class="knob">⟷</span><span class="tg" style="left:12px">Как сняли</span><span class="tg" style="right:12px">После монтажа</span><input type="range" min="3" max="97" value="50" aria-label="Сравнить до и после" id="ba-r"></div>
+<button class="btn" data-go="login">Смонтировать первый ролик бесплатно</button>
+<div class="row wrap"><span class="chip">${ic('phone','style="width:16px"')}Reels 15–90 с</span><span class="chip">${ic('film','style="width:16px"')}Длинные 3–15 мин</span><span class="chip">${ic('star','style="width:16px"')}До 5 видео в один</span></div>
+<div class="card pad row"><img class="img" src="${IMG('ne-perezhivayte')}" alt="" style="width:92px;aspect-ratio:3/4"><div><b class="h3">Снимайте как есть</b><p class="mut sm">Обычный телефон, паузы, оговорки. Лишнее вырежем сами.</p></div></div>
+<div class="card pad row"><img class="img" src="${IMG('do-5-video')}" alt="" style="width:92px;aspect-ratio:3/4;object-position:50% 55%"><div><b class="h3">До 5 видео</b><p class="mut sm">Цех, руки, товар, лицо: склеим в одну историю.</p></div></div>
+<div class="card pad row"><img class="img" src="${IMG('huk')}" alt="" style="width:92px;aspect-ratio:3/4"><div><b class="h3">Цепляет с первой секунды</b><p class="mut sm">Самый яркий момент ставим в начало.</p></div></div>
+<div class="card pad"><b class="h3">Цены</b><p class="mut sm">От 119 ₽ за ролик. Кредиты не сгорают, без подписки. Первый ролик в подарок.</p></div>
+<p class="sm mut" style="text-align:center"><u>Оферта</u> · <u>Политика данных</u> · <u>Контакты</u></p>
+</div>`;
+
+sc.login=`<img src="${IMG('vhod-fon')}" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"><div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(246,243,248,0) 25%,var(--p-bg) 90%)"></div>${SB}
+<div class="body" style="justify-content:flex-end">
+<button class="back" data-go="landing" aria-label="Назад" style="position:absolute;top:12px;left:20px">${ic('back')}</button>
+<div class="card" style="display:flex;flex-direction:column;gap:12px;padding:22px">
+<span class="logo"><i></i>Ролико</span>
+<h2 class="disp h2">Войдите, чтобы забрать ролик в подарок</h2>
+<button class="btn" data-go="home" style="background:#FC3F1D;box-shadow:none"><b style="font-size:18px">Я</b> Войти с Яндекс ID</button>
+<button class="btn" data-go="home" style="background:#0077FF;box-shadow:none"><b>VK</b> Войти через VK ID</button>
+<button class="btn ghost" data-sheet="phone">${ic('phone')}По номеру телефона</button>
+<p class="sm mut">Продолжая, вы принимаете <u>оферту</u> и <u>политику обработки персональных данных</u>.</p>
+</div><p class="sm mut" style="text-align:center">В Telegram вход не нужен: открываем сразу.</p></div>`;
+
+const ideas=[['semka-1-golova','3 ошибки ваших клиентов'],['semka-6-process','Процесс работы за 30 секунд'],['semka-4-otzyv','Отзыв довольного клиента'],['semka-5-tovar','Обзор нового товара'],['semka-2-reportazh','Экскурсия по мастерской']];
+sc.home=`${SB}<div class="body">
+<div class="hd"><div><p class="mut sm">Добрый вечер</p><h2 class="disp h2">Анна</h2></div><div class="row"><button class="chip" data-go="balance">${ic('spark','style="width:16px"')}20</button><button class="chip" data-theme-toggle aria-label="Тема">${ic('moon','style="width:18px"')}</button></div></div>
+<div class="card gift"><img src="${IMG('ikonka-podarok')}" alt=""><div style="flex:1"><b>Первый ролик в подарок</b><p class="sm mut">Смонтируем бесплатно, без карты</p></div><button class="chip on" data-go="create">Создать</button></div>
+<div class="card pad row" style="gap:14px"><img class="img" src="${IMG('semka-1-golova')}" alt="" style="width:64px;aspect-ratio:9/14"><div style="flex:1"><b>Продолжить черновик</b><p class="sm mut">2 видео · шаг 3 из 6 · стиль</p></div><button class="back" data-go="w3" aria-label="Продолжить">${ic('chev')}</button></div>
+<div class="row" style="justify-content:space-between"><b class="h3">Идеи для роликов</b><span class="sm mut">для цветов</span></div>
+<div class="hsc">${ideas.map(([f,t])=>`<button class="idea" data-go="create"><img src="${IMG(f)}" alt=""><span>${t}</span></button>`).join('')}</div>
+<div class="row" style="justify-content:space-between"><b class="h3">Последний ролик</b><button class="sm mut" data-go="reels" style="background:none;border:0">Все ролики</button></div>
+<button class="card pad row" data-go="ready" style="gap:14px;text-align:left;width:100%"><img class="img" src="${IMG('glavnaya-posle-titry')}" alt="" style="width:64px;aspect-ratio:9/14"><div><b>Три ошибки при выборе букета</b><p class="sm mut">Сегодня · 0:38 · Ягода</p></div></button>
+<div class="card pad row">${ic('bulb')}<p class="sm">Совет: говорите первую фразу так, будто продолжаете разговор. Зритель останется.</p></div>
+</div>${tabbar('home')}`;
+
+const uploaded=['semka-1-golova','semka-6-process'];
+const pool=['semka-5-tovar','semka-2-reportazh','semka-8-atmosfera'];
+sc.create=`${SB}<div class="body">
+<div class="hd"><h2 class="disp h2">Новый ролик</h2><span class="sm mut">шаг 0 из 6</span></div>
+<div class="card gift"><img src="${IMG('ikonka-podarok')}" alt=""><div><b>Первый ролик в подарок</b><p class="sm mut">Смонтируем бесплатно, без карты</p></div></div>
+<div class="row" style="justify-content:space-between"><div><b class="h3">Загрузите видео</b><p class="sm mut">До 5 видео, склеим в один ролик</p></div><span class="chip on" id="cnt">2 / 5</span></div>
+<div class="cells" id="cells"></div>
+<div class="card pad row"><img class="img" src="${IMG('ne-perezhivayte')}" alt="" style="width:84px;aspect-ratio:3/4"><div><b>Не переживайте за видео</b><p class="sm mut">Подойдёт обычная съёмка на телефон. Паузы и оговорки уберём.</p></div></div>
+${nxt('w1')}</div>${tabbar('create')}`;
+
+sc.w1=`${SB}<div class="body">${wz(1,'Куда выложите ролик?','Подстроим размер и уберём титры из зон, которые закрывает соцсеть.','create')}
+<div data-group="fmt" style="display:flex;flex-direction:column;gap:8px">
+<button class="opt on" data-z="reels"><span class="fmt" style="height:36px"></span><div><b>Reels и Shorts · 9:16</b><span class="sm mut">На весь экран, до 90 секунд</span></div></button>
+<button class="opt" data-z="stories"><span class="fmt" style="height:36px"></span><div><b>Stories · 9:16</b><span class="sm mut">Живут сутки. Текст поднимем выше кнопок ответа</span></div></button>
+<button class="opt" data-z="feed"><span class="fmt" style="height:28px"></span><div><b>Видео в ленту · 4:5</b><span class="sm mut">В ленте Instagram и VK крупнее квадрата</span></div></button>
+<button class="opt" data-z="long"><span class="fmt" style="height:13px;width:24px"></span><div><b>Длинное · 16:9</b><span class="sm mut">3–15 минут для YouTube и VK Видео</span></div></button></div>
+<div class="card pad row" style="gap:14px"><div class="zone" id="zone"></div><p class="sm" id="ztxt"></p></div>
+${nxt('w2')}</div>`;
+
+const shoots=[['semka-1-golova','Говорю в камеру'],['semka-2-reportazh','Репортаж на ходу'],['semka-3-intervyu','Интервью, подкаст'],['semka-4-otzyv','Отзыв с телефона'],['semka-5-tovar','Обзор товара'],['semka-6-process','Процесс с голосом'],['semka-7-ekran','Запись экрана'],['semka-8-atmosfera','Атмосфера без слов']];
+sc.w2=`${SB}<div class="body">${wz(2,'Как вы снимали?','Спрашиваем один раз: от этого зависит монтаж.','w1')}
+<div class="grid2" data-group="shoot">${shoots.map(([f,l],k)=>`<button class="pick ${k===0?'on':''}"><img src="${IMG(f)}" alt=""><span class="lab">${l}</span>${tick}</button>`).join('')}</div>
+${nxt('w3')}</div>`;
+
+const styles=[['stil-yagoda-zh','Ягода','Бьюти, блог, цветы'],['stil-terrakota-m','Терракота','История бизнеса, мастерская'],['stil-holod-zh','Холод','Техника, B2B'],['stil-fura-m','Фура','Логистика, склад']];
+sc.w3=`${SB}<div class="body">${wz(3,'Выберите стиль','Цвет, плашки и движение. Шрифт выберете на следующем шаге.','w2')}
+<button class="card row" data-go="mystyles" style="padding:10px 14px;text-align:left;width:100%">${ic('star')}<div><b>Мои стили</b><p class="sm mut">«Цветарий весна» · сохранён 12 октября</p></div><span style="margin-left:auto">${ic('chev')}</span></button>
+<div class="grid2" data-group="style">${styles.map(([f,n,d],k)=>`<button class="pick ${k===0?'on':''}"><img src="${IMG(f)}" alt=""><span class="lab">${n}<br><span style="font-weight:500;opacity:.85">${d}</span></span>${tick}</button>`).join('')}</div>
+${nxt('w4')}</div>`;
+
+const fonts=[["900 26px/1.05 'Montserrat'",'Плотный','как у блогеров'],["800 26px/1.05 'Manrope'",'Мягкий','спокойно'],["italic 600 27px/1.05 'Playfair Display'",'Элегантный','бьюти, цветы'],["700 32px/1 'Caveat'",'Рукописный','личный блог']];
+sc.w4=`${SB}<div class="body">${wz(4,'Шрифт титров','','w3')}
+<div class="vid" style="aspect-ratio:4/5"><img src="${IMG('stil-yagoda-zh')}" alt=""><div class="ov tit" id="tit" style="left:16px;right:16px;bottom:22px">Три ошибки при выборе <em>БУКЕТА</em></div></div>
+<div data-group="font" style="display:flex;flex-direction:column;gap:8px">${fonts.map(([f,n,d],k)=>`<button class="fnt ${k===0?'on':''}" data-font="${f}"><span style="font:${f.replace(/ \d+px\/[\d.]+/,' 20px')}">${n}</span><span class="sm mut">${d}</span></button>`).join('')}</div>
+<div class="row" data-group="pos"><span class="mut sm">Титры</span><button class="chip on" data-pos="bottom">снизу</button><button class="chip" data-pos="center">по центру</button></div>
+${nxt('w5')}</div>`;
+
+sc.w5=`${SB}<div class="body">${wz(5,'Начало ролика','Первые 2 секунды решают, пролистают вас или нет.','w4')}
+<div class="vid" style="aspect-ratio:16/11"><img src="${IMG('huk')}" alt="" style="object-position:50% 38%"><div class="ov tit" style="left:14px;right:14px;top:16px;font-size:22px">Вы теряете клиентов <em>на первой секунде</em></div></div>
+<div data-group="hook" style="display:flex;flex-direction:column;gap:8px">
+<button class="opt on" data-h="auto"><span class="rd"></span><div><b>Подберите за меня</b><span class="sm mut">Найдём самый яркий момент вашего видео и поставим его первым</span></div></button>
+<button class="opt" data-h="phrase"><span class="rd"></span><div style="flex:1"><b>Укажу фразу из видео</b><span class="sm mut">Начнём ролик с этого места</span></div></button>
+<input class="inp" id="hookphrase" placeholder="например: «три ошибки при выборе букета»" hidden>
+<button class="opt" data-h="none"><span class="rd"></span><div><b>Оставить как снято</b></div></button></div>
+<div class="row card" style="padding:12px 14px"><div><b>Крупная надпись поверх</b><p class="sm mut">Первые 2 секунды</p></div><button class="sw" role="switch" aria-checked="true" aria-label="Крупная надпись поверх"></button></div>
+${nxt('w6')}</div>`;
+
+sc.w6=`${SB}<div class="body">${wz(6,'Чем закончить?','Последняя фраза подсказывает зрителю, что сделать.','w5')}
+<div class="vid" style="aspect-ratio:4/5"><img src="${IMG('prizyv')}" alt=""><div class="ov" id="ctaov" style="right:14px;top:32%;width:46%;padding:12px;border-radius:16px;background:rgba(255,255,255,.9);color:#1a1a1a;font:800 17px/1.15 var(--ui)">Напишите «БУКЕТ» в директ</div></div>
+<div class="row wrap" data-group="cta"><button class="chip on" data-c="Напишите «БУКЕТ» в директ">Напишите нам</button><button class="chip" data-c="Подпишитесь, чтобы не пропустить">Подпишитесь</button><button class="chip" data-c="Ссылка на запись в профиле">Ссылка в профиле</button><button class="chip" data-c="">Своя фраза</button><button class="chip" data-c="-">Без призыва</button></div>
+<input class="inp" id="ctain" value="Напишите «БУКЕТ» в директ" aria-label="Текст призыва">
+${nxt('sum')}</div>`;
+
+sc.sum=`${SB}<div class="body"><div class="wzh"><button class="back" data-go="w6" aria-label="Назад">${ic('back')}</button><h2 class="disp h2">Проверим?</h2></div>
+<div class="card list" id="sumlist"></div>
+<div class="card pad row"><img class="img" src="${IMG('stil-yagoda-m')}" alt="" style="width:74px;aspect-ratio:9/14"><div><b>Так выглядит «Ягода»</b><p class="sm mut">Пример из нашей библиотеки стилей</p></div></div>
+<div class="row" style="justify-content:space-between"><span>Стоимость</span><span><s class="mut">10 кредитов</s> <b>Подарок</b></span></div>
+<p class="sm mut">${ic('bell','style="width:16px;height:16px;vertical-align:-3px"')} Сообщим, когда будет готово: в браузере и в Telegram.</p>
+${nxt('progress','Смонтировать')}</div>`;
+
+const stages=['Слушаю речь','Режу паузы и оговорки','Ставлю титры','Подбираю звук и цвет','Собираю ролик'];
+sc.progress=`${SB}<div class="body" style="justify-content:center;gap:22px">
+<div class="orb" role="img" aria-label="Идёт монтаж"></div>
+<h2 class="disp h2" style="text-align:center" id="stage">${stages[0]}</h2>
+<div class="card pad" style="display:flex;flex-direction:column;gap:12px" id="stages">${stages.map((s,i)=>`<div class="step wait"><i>${i+1}</i>${s}</div>`).join('')}</div>
+<p class="sm mut" style="text-align:center">Обычно 3–5 минут. Можно закрыть: пришлём уведомление.</p>
+<button class="btn ghost" data-go="home">Свернуть</button></div>`;
+
+sc.ready=`${SB}<div class="body">
+<div class="hd"><div class="row"><button class="back" data-go="reels" aria-label="Назад">${ic('back')}</button><h2 class="disp h2">Ролик готов</h2></div><img src="${IMG('ikonka-rolik-gotov')}" alt="" style="width:44px"></div>
+<div class="vid" id="vid"><img src="${IMG('glavnaya-posle-titry')}" alt="Готовый ролик"><span class="play">${ic('play','style="width:26px;height:26px"')}</span><span class="wm">Ролико</span><span class="badge">0:38</span></div>
+<p class="sm mut" style="text-align:center">Двойной тап: на весь экран</p>
+<div style="position:relative;display:grid;grid-template-columns:1.3fr 1fr;gap:10px">
+<button class="btn" data-toast="Сохранено в «Загрузки»">${ic('down')}Скачать</button><button class="btn ghost" id="sharebtn" aria-expanded="false">${ic('share')}Поделиться ▾</button>
+<div class="menu" id="menu" hidden><button data-toast="Бот прислал ролик в Telegram">${ic('tg')}Отправить в Telegram</button><button data-toast="Открыто меню телефона">${ic('share')}Другие приложения</button></div></div>
+<div class="card pad sm">Это подарочный ролик со знаком. После первого пополнения пересоберём без знака бесплатно.</div>
+<b>Поправить</b>
+<div class="row wrap"><button class="chip" data-sheet="edit">Другой стиль</button><button class="chip" data-sheet="edit">Новое начало</button><button class="chip" data-sheet="edit">Другой финал</button><button class="chip" data-sheet="edit">${ic('edit','style="width:14px;height:14px"')}Исправить слово</button><button class="chip" data-sheet="edit">Убрать кусок</button></div>
+</div>${tabbar('reels')}`;
+
+const mv=[['glavnaya-posle-titry','Готов','','ready'],['stil-terrakota-zh','Монтируется 60%','go','progress'],['semka-8-atmosfera','Готов','','ready'],['stil-holod-m','Готов','','ready']];
+sc.reels=`${SB}<div class="body"><h2 class="disp h2">Мои ролики</h2>
+<div class="mini">${mv.map(([f,s,c,g])=>`<button class="mv" data-go="${g}"><img src="${IMG(f)}" alt=""><span class="st ${c}">${s}</span></button>`).join('')}</div>
+<button class="ref" data-sheet="invite"><img src="${IMG('ikonka-podarok')}" alt=""><div><b>Пригласите подругу</b><p class="sm" style="opacity:.8">+10 кредитов вам обеим после её первого ролика</p></div></button>
+</div>${tabbar('reels')}`;
+
+const packs=[['1 ролик','149 ₽','149 ₽ за ролик','149'],['10 роликов','1 390 ₽','139 ₽ за ролик','1 390'],['25 роликов','3 225 ₽','129 ₽ за ролик','3 225'],['50 роликов','5 950 ₽','119 ₽ за ролик','5 950']];
+sc.balance=`${SB}<div class="body"><h2 class="disp h2">Баланс</h2>
+<div class="card row" style="padding:18px;gap:14px"><img src="${IMG('ikonka-kredity')}" alt="" style="width:64px"><div><div class="num">20</div><p class="mut">кредитов · хватит на 2 ролика</p></div></div>
+<p class="sm mut">1 ролик до минуты = 10 кредитов. Кредиты не сгорают, без подписки. <button data-sheet="how" style="background:none;border:0;padding:0;color:inherit;text-decoration:underline">Подробнее</button></p>
+<div data-group="pack" style="display:flex;flex-direction:column;gap:8px">${packs.map(([a,b,c,s],k)=>`<button class="pack ${k===2?'on':''}" data-sum="${s}"><div><b>${a}</b>${k===2?'<span class="hit">выгоднее</span>':''}</div><div class="pr"><b>${b}</b><p class="sm mut">${c}</p></div></button>`).join('')}</div>
+<button class="btn" data-sheet="pay" id="paybtn">Пополнить на 3 225 ₽</button>
+<div class="ttl">История</div>
+<div class="card list"><div class="li">Ролик «Три ошибки…»<span class="r">−10</span></div><div class="li">Подарок за регистрацию<span class="r">+10</span></div><div class="li">Пополнение 10 роликов<span class="r">+100</span></div></div>
+</div>${tabbar('balance')}`;
+
+const grp=[['key','Аккаунт и вход','Яндекс ID','account'],['star','Мои стили','2 стиля','mystyles'],['bell','Уведомления','Браузер и Telegram','notif'],['card','Оплата и чеки','','balance'],['brush','Оформление','Тема и текст','look'],['help','Помощь','',''],['doc','Документы','Оферта, политика','']];
+sc.profile=`${SB}<div class="body">
+<div class="hd"><div class="row"><span class="av">А</span><div><b class="h3">Анна</b><p class="sm mut">Цветарий · вход через Яндекс ID</p></div></div><button class="chip" data-theme-toggle aria-label="Тема">${ic('moon','style="width:18px"')}</button></div>
+<button class="ref" data-sheet="invite"><img src="${IMG('ikonka-podarok')}" alt=""><div style="flex:1"><b>Пригласить подругу</b><p class="sm" style="opacity:.8">+10 кредитов вам обеим</p></div>${ic('chev')}</button>
+<div class="card list">${grp.map(([i,a,b,g])=>`<button class="li" ${g?(['account','notif','look'].includes(g)?`data-sheet="${g}"`:`data-go="${g}"`):''}>${ic(i)}<b style="font-size:15px">${a}</b><span class="r">${b}${ic('chev','style="width:16px;height:16px"')}</span></button>`).join('')}</div>
+<button class="sm mut" data-go="landing" style="background:none;border:0">Выйти</button>
+</div>${tabbar('profile')}`;
+
+sc.mystyles=`${SB}<div class="body"><div class="wzh"><button class="back" data-back aria-label="Назад">${ic('back')}</button><h2 class="disp h2">Мои стили</h2></div>
+<p class="mut">Сохраните стиль после удачного ролика. Измените его здесь, и новые ролики выйдут уже в обновлённом виде.</p>
+${[['stil-yagoda-zh','Цветарий весна','Ягода · Плотный · снизу · «Напишите нам»'],['stil-terrakota-zh','Мастер-класс','Терракота · Элегантный · по центру']].map(([f,n,d])=>`<div class="card pad row" style="gap:14px"><img class="img" src="${IMG(f)}" alt="" style="width:64px;aspect-ratio:9/14"><div style="flex:1"><b>${n}</b><p class="sm mut">${d}</p></div><button class="chip" data-sheet="editstyle">${ic('edit','style="width:14px"')}Изменить</button></div>`).join('')}
+<button class="btn ghost" data-toast="Стиль сохранится после следующего ролика">${ic('plus')}Новый стиль</button>
+</div>`;
+
+const SHEETS={
+ phone:`<b class="h3">Вход по номеру</b><input class="inp" value="+7 " aria-label="Телефон"><input class="inp" placeholder="Код из СМС (в демо 000000)" aria-label="Код"><button class="btn" data-go="home" data-close>Войти</button>`,
+ edit:`<b class="h3">Поправить ролик</b><p class="mut sm">Без новой загрузки. Стоимость правки: 2 кредита.</p><div class="row wrap"><button class="chip on">Другой стиль</button><button class="chip">Новое начало</button><button class="chip">Другой финал</button><button class="chip">Исправить слово</button><button class="chip">Убрать кусок</button><button class="chip">Вернуть вырезанное</button></div><button class="btn" data-go="progress" data-close>Пересобрать за 2 кредита</button>`,
+ invite:`<b class="h3">Пригласите подругу</b><p class="mut sm">Когда она смонтирует первый ролик, вы обе получите по 10 кредитов.</p><div class="inp">ролико.рф/?r=ANNA20</div><button class="btn" data-toast="Ссылка скопирована" data-close>Скопировать ссылку</button>`,
+ how:`<b class="h3">Как считаем</b><div class="card list"><div class="li">Ролик до 1 минуты<span class="r">10 кредитов</span></div><div class="li">Ролик 1–3 минуты<span class="r">20 кредитов</span></div><div class="li">Длинное видео до 15 мин<span class="r">40 кредитов</span></div><div class="li">Правка готового ролика<span class="r">2 кредита</span></div></div><p class="sm mut">Если монтаж не получился по нашей вине, кредиты вернутся сами.</p>`,
+ pay:`<b class="h3">Оплата</b><p class="mut sm" id="paytxt">25 роликов · 3 225 ₽</p><button class="btn" data-toast="Демо: оплата не выполняется" data-close>Оплатить картой или СБП</button><p class="sm mut">Чек придёт на почту. Без подписки и автосписаний.</p>`,
+ account:`<b class="h3">Аккаунт и вход</b><p class="mut sm">Привяжите второй способ входа, чтобы не потерять ролики.</p><div class="card list"><div class="li">Яндекс ID<span class="r">подключён ✓</span></div><div class="li">VK ID<span class="r">привязать</span></div><div class="li">Телефон<span class="r">привязать</span></div><div class="li">Telegram<span class="r">привязать</span></div></div>`,
+ notif:`<b class="h3">Уведомления</b><div class="card list"><div class="li">В браузере<button class="sw" role="switch" aria-checked="true" aria-label="В браузере"></button></div><div class="li">В Telegram<button class="sw" role="switch" aria-checked="true" aria-label="В Telegram"></button></div></div><p class="sm mut">По умолчанию включено и то, и другое.</p>`,
+ look:`<b class="h3">Оформление</b><div class="ttl">Тема</div><div class="row" data-group="mode"><button class="chip on" data-mode="auto">Авто</button><button class="chip" data-mode="day">${ic('sun','style="width:16px"')}День</button><button class="chip" data-mode="night">${ic('moon','style="width:16px"')}Ночь</button></div><div class="ttl">Размер текста</div><div class="row" data-group="fs"><button class="chip on" data-fs="15">Обычный</button><button class="chip" data-fs="17">Крупный</button></div><p class="sm mut">Крупный текст удобнее, если мелкий трудно читать.</p>`,
+ editstyle:`<b class="h3">Цветарий весна</b><div class="ttl">Стиль</div><div class="row wrap"><button class="chip on">Ягода</button><button class="chip">Терракота</button><button class="chip">Холод</button><button class="chip">Фура</button></div><div class="ttl">Шрифт</div><div class="row wrap"><button class="chip on">Плотный</button><button class="chip">Мягкий</button><button class="chip">Элегантный</button><button class="chip">Рукописный</button></div><div class="ttl">Призыв</div><input class="inp" value="Напишите «БУКЕТ» в директ" aria-label="Призыв"><button class="btn" data-toast="Стиль обновлён" data-close>Сохранить</button>`
+};
+
+const app=document.getElementById('app');
+app.innerHTML=Object.entries(sc).map(([k,v])=>`<section class="scr${v.includes('class="tabs"')?' withtab':''}" data-s="${k}">${v}</section>`).join('')+
+ `<div class="sheet" id="sheet"><div class="in"><div class="grab"></div><div id="sheetc" style="display:flex;flex-direction:column;gap:12px"></div></div></div>`+
+ `<div class="full" id="full"><img src="${IMG('glavnaya-posle-titry')}" alt="Ролик на весь экран"><button class="x" data-closefull aria-label="Закрыть">×</button></div><div class="toast" id="toast"></div>`;
+
+let cur='landing',hist=[],timer=null;
+function go(s,push=true){if(!sc[s])return;if(push&&s!==cur)hist.push(cur);cur=s;
+  app.querySelectorAll('.scr').forEach(e=>e.classList.toggle('on',e.dataset.s===s));
+  const b=app.querySelector(`.scr[data-s="${s}"] .body`);if(b)b.scrollTop=0;
+  if(s==='sum')fillSum(); if(s==='progress')runProgress(); else clearInterval(timer);}
+const state={fmt:'Reels · 9:16',shoot:'Говорю в камеру',style:'Ягода',font:'Плотный, снизу',hook:'Подберём за вас',cta:'Напишите «БУКЕТ»'};
+function fillSum(){const rows=[['Видео',`${uploaded.length} ${uploaded.length===1?'файл':uploaded.length<5?'файла':'файлов'}`,'create'],['Куда',state.fmt,'w1'],['Съёмка',state.shoot,'w2'],['Стиль',state.style,'w3'],['Шрифт',state.font,'w4'],['Начало',state.hook,'w5'],['Финал',state.cta,'w6']];
+  document.getElementById('sumlist').innerHTML=rows.map(([a,b,g])=>`<button class="li" data-go="${g}"><span class="mut">${a}</span><span class="r"><b style="color:var(--p-ink);font-size:14px">${b}</b>${ic('chev','style="width:16px;height:16px"')}</span></button>`).join('');}
+function runProgress(){let i=0;const els=[...document.querySelectorAll('#stages .step')];const st=document.getElementById('stage');
+  const upd=()=>{els.forEach((e,k)=>{e.className='step '+(k<i?'done':k===i?'now':'wait');e.querySelector('i').innerHTML=k<i?ic('check','style="width:14px;height:14px"'):k+1});st.textContent=i<5?stages[i]:'Готово';};
+  upd();clearInterval(timer);timer=setInterval(()=>{i++;upd();if(i>=5){clearInterval(timer);setTimeout(()=>cur==='progress'&&go('ready'),600)}},1100);}
+function cells(){const c=document.getElementById('cells');let h=uploaded.map((f,k)=>`<div class="cell"><img src="${IMG(f)}" alt=""><span class="badge">0:${48+k*3}</span><button class="x" data-del="${k}" aria-label="Убрать видео">×</button></div>`).join('');
+  if(uploaded.length<5)h+=`<button class="cell add" id="addv" aria-label="Добавить видео">${ic('plus','style="width:30px;height:30px"')}</button>`;
+  for(let i=uploaded.length+1;i<5;i++)h+=`<div class="cell"></div>`;
+  h+=`<div class="cell" style="border:0;background:transparent;text-align:center;font-size:12px;padding:4px">Вертикально или горизонтально, до 15 мин</div>`;
+  c.innerHTML=h;document.getElementById('cnt').textContent=`${uploaded.length} / 5`;}
+const ZONES={reels:[['top:0;height:12%'],['bottom:0;height:22%'],['right:0;left:auto;top:45%;bottom:22%;width:16%']],stories:[['top:0;height:14%'],['bottom:0;height:18%']],feed:[['bottom:0;height:12%']],long:[['bottom:0;height:14%']]};
+const ZT={reels:'Заштриховано то, что закрывает Reels: ник, подпись, кнопки справа. Титры ставим в чистую зону.',stories:'В Stories сверху полоска и имя, снизу поле ответа. Текст поднимем повыше.',feed:'В ленте 4:5 снизу подпись под видео. Важное держим выше.',long:'В длинном видео снизу полоса плеера. Титры чуть выше неё.'};
+function zone(z){const el=document.getElementById('zone');el.style.aspectRatio=z==='feed'?'4/5':z==='long'?'16/9':'9/16';el.style.width=z==='long'?'120px':'86px';el.innerHTML=ZONES[z].map(s=>`<i style="${s[0]}"></i>`).join('');document.getElementById('ztxt').textContent=ZT[z];}
+function sheet(n){document.getElementById('sheetc').innerHTML=SHEETS[n];document.getElementById('sheet').classList.add('on');
+  if(n==='pay'){const p=app.querySelector('[data-group="pack"] .on');document.getElementById('paytxt').textContent=p.querySelector('b').textContent+' · '+p.dataset.sum+' ₽';}}
+function closeSheet(){document.getElementById('sheet').classList.remove('on')}
+function toast(t){const e=document.getElementById('toast');e.textContent=t;e.classList.add('on');clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove('on'),1800)}
+let mode='day';
+function setMode(m){mode=m;const night=m==='night'||(m==='auto'&&matchMedia('(prefers-color-scheme: dark)').matches);app.dataset.mode=night?'night':'day';
+  app.querySelectorAll('[data-theme-toggle]').forEach(b=>b.innerHTML=ic(night?'sun':'moon','style="width:18px"'));}
+
+app.addEventListener('click',e=>{const t=e.target.closest('button,[data-go]');if(!t||!app.contains(t))return;
+  if(e.target===document.getElementById('sheet')){closeSheet();return}
+  if(t.dataset.del!==undefined){pool.push(uploaded.splice(+t.dataset.del,1)[0]);cells();return}
+  if(t.id==='addv'){if(pool.length)uploaded.push(pool.shift());cells();return}
+  if(t.id==='sharebtn'){const m=document.getElementById('menu');m.hidden=!m.hidden;t.setAttribute('aria-expanded',String(!m.hidden));return}
+  if(t.hasAttribute('data-theme-toggle')){setMode(app.dataset.mode==='night'?'day':'night');return}
+  if(t.matches('.sw')){t.setAttribute('aria-checked',String(t.getAttribute('aria-checked')!=='true'));return}
+  if(t.dataset.closefull!==undefined){document.getElementById('full').classList.remove('on');return}
+  const g=t.closest('[data-group]');
+  if(g&&!t.dataset.go&&!t.dataset.sheet){g.querySelectorAll(':scope > button,.on').forEach(x=>x.classList.remove('on'));t.classList.add('on');
+    const k=g.dataset.group;
+    if(k==='fmt'){state.fmt=t.querySelector('b').textContent.replace(' и Shorts','');zone(t.dataset.z)}
+    if(k==='shoot')state.shoot=t.querySelector('.lab').textContent;
+    if(k==='style')state.style=t.querySelector('.lab').firstChild.textContent;
+    if(k==='font'){const ti=document.getElementById('tit');ti.style.font=t.dataset.font;state.font=t.querySelector('span').textContent+(state.font.includes('центру')?', по центру':', снизу')}
+    if(k==='pos'){const ti=document.getElementById('tit');const c=t.dataset.pos==='center';ti.style.bottom=c?'auto':'22px';ti.style.top=c?'42%':'auto';state.font=state.font.split(',')[0]+(c?', по центру':', снизу')}
+    if(k==='hook'){document.getElementById('hookphrase').hidden=t.dataset.h!=='phrase';state.hook={auto:'Подберём за вас',phrase:'Своя фраза',none:'Как снято'}[t.dataset.h]}
+    if(k==='cta'){const c=t.dataset.c,ov=document.getElementById('ctaov'),inp=document.getElementById('ctain');ov.hidden=c==='-';inp.hidden=c==='-';if(c&&c!=='-'){inp.value=c;ov.textContent=c}if(c==='')inp.focus();state.cta=c==='-'?'Без призыва':inp.value.replace(' в директ','').replace(', чтобы не пропустить','')}
+    if(k==='pack')document.getElementById('paybtn').textContent='Пополнить на '+t.dataset.sum+' ₽';
+    if(k==='mode')setMode(t.dataset.mode);
+    if(k==='fs')app.style.fontSize=t.dataset.fs+'px';
+    return}
+  if(t.dataset.toast)toast(t.dataset.toast);
+  if(t.dataset.close!==undefined)closeSheet();
+  if(t.dataset.sheet){sheet(t.dataset.sheet);return}
+  if(t.hasAttribute('data-back')){go(hist.pop()||'home',false);return}
+  if(t.dataset.go){closeSheet();const m=document.getElementById('menu');if(m)m.hidden=true;go(t.dataset.go)}
+});
+document.getElementById('sheet').addEventListener('click',e=>{if(e.target.id==='sheet')closeSheet()});
+document.getElementById('ctain').addEventListener('input',e=>{document.getElementById('ctaov').textContent=e.target.value;state.cta=e.target.value});
+document.getElementById('vid').addEventListener('dblclick',()=>document.getElementById('full').classList.add('on'));
+let lastTap=0;document.getElementById('vid').addEventListener('touchend',e=>{const n=Date.now();if(n-lastTap<320){e.preventDefault();document.getElementById('full').classList.add('on')}lastTap=n});
+/* до/после: шторка сама ходит, пока не тронули */
+const ba=document.getElementById('ba'),r=document.getElementById('ba-r');let auto=true,ph=0;
+r.addEventListener('input',()=>{auto=false;ba.style.setProperty('--cut',r.value+'%')});
+(function loop(){if(auto&&!matchMedia('(prefers-reduced-motion: reduce)').matches){ph+=.012;const v=50+38*Math.sin(ph);ba.style.setProperty('--cut',v+'%');r.value=v}requestAnimationFrame(loop)})();
+cells();zone('reels');setMode('day');
+const start=(location.hash.match(/^#([a-z0-9]+)$/)||[])[1];go(sc[start]?start:'landing',false);
+</script>
