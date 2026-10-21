@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="r7-title" style="color:#B49CF0"><title id="r7-title">РОЛИК!О</title><defs>
+ <linearGradient id="r7-glass" x1="0" y1="0" x2="1" y2=".85"><stop stop-color="#EDE5FF"/><stop offset=".23" stop-color="#8B6FD1"/><stop offset=".53" stop-color="#B49CF0"/><stop offset=".78" stop-color="#E8A3BC"/><stop offset="1" stop-color="#F9DDE9"/></linearGradient>
+ <linearGradient id="r7-edge" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#FFFFFF"/><stop offset=".2" stop-color="#8870BE"/><stop offset=".48" stop-color="#F6F0FF"/><stop offset=".7" stop-color="#B07BC9"/><stop offset="1" stop-color="#FFF5F9"/></linearGradient>
+ <linearGradient id="r7-rim" x1="0" y1=".2" x2="1" y2=".8"><stop stop-color="#FFFFFF" stop-opacity=".9"/><stop offset=".3" stop-color="#B49CF0" stop-opacity=".15"/><stop offset=".7" stop-color="#FFF6FC" stop-opacity=".85"/><stop offset="1" stop-color="#E8A3BC" stop-opacity=".2"/></linearGradient>
+ <radialGradient id="r7-pearl" cx=".32" cy=".22" r=".85"><stop stop-color="#FFFFFF"/><stop offset=".18" stop-color="#FCEAF3"/><stop offset=".5" stop-color="#E8A3BC"/><stop offset=".78" stop-color="#C978A2"/><stop offset="1" stop-color="#F4CFDF"/></radialGradient>
+ <linearGradient id="r7-stem" x1="0" y1="0" x2="1" y2=".7"><stop stop-color="#FFFFFF"/><stop offset=".15" stop-color="#CFC1F5"/><stop offset=".4" stop-color="#8B6FD1"/><stop offset=".75" stop-color="#B49CF0"/><stop offset="1" stop-color="#EEE2FA"/></linearGradient>
+ <linearGradient id="r7-shine" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#FFFFFF" stop-opacity=".95"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></linearGradient>
+ <filter id="r7-soft" x="-25%" y="-25%" width="150%" height="150%"><feGaussianBlur stdDeviation="5"/></filter>
+</defs><g data-part="mark">
+ <g data-part="ring">
+  <path d="M 458 275 A 132 156 0 1 1 194 275 A 132 156 0 1 1 458 275 Z M 382 275 A 56 76 0 1 0 270 275 A 56 76 0 1 0 382 275 Z" fill-rule="evenodd" fill="url(#r7-glass)" stroke="url(#r7-edge)" stroke-width="5"/>
+  <ellipse cx="326" cy="275" rx="124" ry="148" fill="none" stroke="url(#r7-rim)" stroke-width="6"/>
+  <ellipse cx="326" cy="275" rx="62" ry="82" fill="none" stroke="#7D59B0" stroke-opacity=".33" stroke-width="8"/>
+  <ellipse cx="326" cy="275" rx="57" ry="77" fill="none" stroke="url(#r7-edge)" stroke-width="3"/>
+  <path d="M 220 288 C 207 216 251 156 307 150" fill="none" stroke="#E7D9FF" stroke-width="18" opacity=".65" filter="url(#r7-soft)"/>
+  <path d="M 399 337 C 381 385 338 409 291 393" fill="none" stroke="#FFF0F8" stroke-width="15" opacity=".7" filter="url(#r7-soft)"/>
+  <g data-part="glint"><path d="M 351 139 C 380 147 402 165 417 192 L 398 205 C 385 183 365 168 344 160 Z" fill="url(#r7-shine)"/><path d="M 216 238 C 219 194 242 160 272 145" fill="none" stroke="#FFF" stroke-opacity=".8" stroke-width="4" stroke-linecap="round"/></g>
+ </g>
+ <g data-part="stem"><g transform="rotate(10 130 215)">
+  <rect x="98" y="91" width="63" height="230" rx="31.5" fill="url(#r7-stem)" stroke="url(#r7-edge)" stroke-width="4"/>
+  <rect x="104" y="98" width="50" height="216" rx="25" fill="none" stroke="url(#r7-rim)" stroke-width="3"/>
+  <path d="M 112 139 Q 110 113 130 108" fill="none" stroke="#FFF" stroke-width="7" stroke-linecap="round" opacity=".85"/>
+  <path d="M 112 163 L 112 273" fill="none" stroke="#FFF" stroke-width="4" stroke-linecap="round" opacity=".45"/>
+ </g></g>
+ <g data-part="dot"><circle cx="107" cy="384" r="39" fill="url(#r7-pearl)" stroke="url(#r7-edge)" stroke-width="2"/><ellipse cx="96" cy="367" rx="18" ry="10" transform="rotate(-25 96 367)" fill="#FFF" opacity=".8"/><path d="M 79 399 Q 103 421 128 402" fill="none" stroke="#FFF0F6" stroke-width="3" opacity=".7"/></g>
+</g></svg>

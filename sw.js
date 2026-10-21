@@ -1,6 +1,6 @@
 /* Service worker PWA: кэш оболочки (сеть сначала для страниц, кэш для статики), push о готовом ролике,
    клик по уведомлению открывает ролик. Видео и ответы API не кэшируем. */
-const CACHE = 'shell-v2'
+const CACHE = 'shell-v3'  // v3: иконки логотипа № 7 под прежними именами — старый кэш удаляется
 // Пути от папки, где лежит sw.js: сайт в корне домена или демо в подпапке (этап 4.2)
 const BASE = new URL('./', self.location).pathname
 const SHELL = [BASE, BASE + 'manifest.webmanifest', BASE + 'icons/icon-192.png']
