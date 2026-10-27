@@ -1,7 +1,7 @@
 {
   "name": "Ролико",
   "short_name": "Ролико",
-  "start_url": "/agent-montazh-demo/#/create",
+  "start_url": "/agent-montazh-demo/#/",
   "scope": "/agent-montazh-demo/",
   "display": "standalone",
   "background_color": "#F6F3F8",
